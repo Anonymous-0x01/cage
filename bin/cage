@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# CAGE CLI wrapper: runs `python -m cage.cli` inside the project environment.
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [ -z "${CAGE_ROOT:-}" ] || [ "${CONDA_DEFAULT_ENV:-}" != "${CAGE_CONDA_ENV:-clo}" ]; then
+    # shellcheck disable=SC1091
+    source "$ROOT/scripts/env.sh"
+fi
+exec python -m cage.cli "$@"

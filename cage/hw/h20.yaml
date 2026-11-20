@@ -1,0 +1,39 @@
+# Nominal hardware specs used by the cheap cost model (overridden by calibration.json when present).
+# Efficiency factors convert peak numbers into what generated kernels typically reach.
+devices:
+  H20-3e:
+    match: ["H20-3e", "H20 3e", "H20E"]
+    sm_count: 78
+    hbm_gbps: 4800          # HBM3e
+    l2_mb: 60
+    fp16_tflops: 148        # dense tensor core FP16/BF16
+    fp32_tflops: 44
+    smem_per_sm_kb: 228
+    regs_per_sm: 65536
+    launch_us: 4.0          # per-kernel launch + Inductor wrapper overhead (eager-free path)
+    bw_eff: 0.80
+    gemm_eff: 0.70
+  H20:
+    match: ["H20"]
+    sm_count: 78
+    hbm_gbps: 4000          # HBM3
+    l2_mb: 60
+    fp16_tflops: 148
+    fp32_tflops: 44
+    smem_per_sm_kb: 228
+    regs_per_sm: 65536
+    launch_us: 4.0
+    bw_eff: 0.80
+    gemm_eff: 0.70
+  generic:
+    match: []
+    sm_count: 80
+    hbm_gbps: 2000
+    l2_mb: 40
+    fp16_tflops: 150
+    fp32_tflops: 20
+    smem_per_sm_kb: 164
+    regs_per_sm: 65536
+    launch_us: 5.0
+    bw_eff: 0.75
+    gemm_eff: 0.65
